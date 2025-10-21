@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Steps } from '../services/steps'
 import { Escena } from '../escena/escena';
 
 @Component({
@@ -8,5 +9,7 @@ import { Escena } from '../escena/escena';
   styleUrl: './home.css'
 })
 export class Home {
+  private steps = inject(Steps);
 
+  data = signal(this.steps.getSteps());
 }
