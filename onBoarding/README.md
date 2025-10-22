@@ -418,3 +418,4 @@ This project is developed as part of IT Academy's frontend bootcamp curriculum.
 
 * Add accessibility improvements (ARIA labels, focus management)
 * Using Tailwind or SASS instead of CSS for the web layout
+* Use of a proper branching system in the commits
