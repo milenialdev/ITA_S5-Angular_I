@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
+import { provideZonelessChangeDetection } from '@angular/core';
 import { Steps } from './steps';
 
 describe('Steps', () => {
   let service: Steps;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()]
+    });
     service = TestBed.inject(Steps);
   });
 
@@ -32,8 +34,7 @@ describe('Steps', () => {
   });
 
   it('should have correct bgcolor for first step', () => {
-  const data = service.getSteps();
-  expect(data[0].bgcolor).toBe('#4ca2a8');
+    const data = service.getSteps();
+    expect(data[0].bgcolor).toBe('#4ca2a8');
   });
-
 });
