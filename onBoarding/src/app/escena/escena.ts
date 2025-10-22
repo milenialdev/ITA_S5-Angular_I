@@ -9,26 +9,36 @@ import { IStep } from '../models/istep.interface';
 })
 export class Escena {
   steps = input.required<IStep[]>();
-
   currentStep = signal(0);
-
   directionAnimation = signal<'left' | 'right'>('right');
-  animationTrigger = signal(0);
+  showContent = signal(true);
 
   nextStep(){
     this.directionAnimation.set('right')
-    this.currentStep.update(value => Math.min(value + 1, this.steps().length - 1));
+    this.showContent.set(false)
+    setTimeout(() =>{
+    this.currentStep.update(value => Math.min(value + 1, this.steps().length - 1))
+    this.showContent.set(true)
+    }, 50);
   }
 
   previousStep(){
     this.directionAnimation.set('left')
-    this.currentStep.update(value => Math.max(value - 1, 0));
+    this.showContent.set(false)
+    setTimeout(() => {
+      this.currentStep.update(value => Math.max(value - 1, 0))
+      this.showContent.set(true)
+    }, 50);
   }
 
   goToStep(index: number){
     if(index !== this.currentStep()){
       this.directionAnimation.set(index > this.currentStep() ? 'right' : 'left');
-      this.currentStep.set(index);
+      this.showContent.set(false);
+      setTimeout(() => {
+        this.currentStep.set(index);
+        this.showContent.set(true);
+      }, 50);
     }
   }
   getAnimationClass(): string {
